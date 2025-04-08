@@ -6,7 +6,9 @@
         PanScroll = PanBack '不知道为啥不能在 XAML 设置
         PanLog.Visibility = If(ModeDebug, Visibility.Visible, Visibility.Collapsed)
         '快照版提示
-#If BETA Then
+'#If BETA Then
+#If 1 Then
+
         PanHint.Visibility = Visibility.Collapsed
 #Else
         PanHint.Visibility = If(ThemeCheckGold(), Visibility.Collapsed, Visibility.Visible)
@@ -46,7 +48,7 @@
             Case 1
                 '加载本地文件
                 Log("[Page] 主页自定义数据来源：本地文件")
-                Content = ReadFile(Path & "PCL\Custom.xaml") 'ReadFile 会进行存在检测
+                Content = ReadFile(Path & "PCL\Custom.xaml") 'ReadFile 会进行存在检测F
             Case 2
                 Url = Setup.Get("UiCustomNet")
 Download:

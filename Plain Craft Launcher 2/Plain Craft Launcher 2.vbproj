@@ -929,7 +929,62 @@
     <Resource Include="Images\Heads\MCBBS.png" />
   </ItemGroup>
   <ItemGroup>
-
+    <Content Include="obj\Debug\Application.baml" />
+    <Content Include="obj\Debug\Controls\MyExtraTextButton.baml" />
+    <Content Include="obj\Debug\Controls\MyHint.baml" />
+    <Content Include="obj\Debug\Controls\MyMsg\MyMsgInput.baml" />
+    <Content Include="obj\Debug\Controls\MyMsg\MyMsgSelect.baml" />
+    <Content Include="obj\Debug\Controls\MyMsg\MyMsgText.baml" />
+    <Content Include="obj\Debug\Controls\MySearchBox.baml" />
+    <Content Include="obj\Debug\FormMain.baml" />
+    <Content Include="obj\Debug\Modules\Minecraft\MyCompItem.baml" />
+    <Content Include="obj\Debug\Modules\Minecraft\MyLocalModItem.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadClient.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadCompDetail.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadFabric.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadForge.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadInstall.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadLiteLoader.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadMod.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadNeoForge.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadOptiFine.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadPack.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\MyMsgLogin.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\MySkin.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLaunchLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLaunchRight.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginAuth.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginAuthSkin.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginLegacy.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginMs.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginMsSkin.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginNide.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginNideSkin.baml" />
+    <Content Include="obj\Debug\Pages\PageLink\PageLinkFeedback.baml" />
+    <Content Include="obj\Debug\Pages\PageLink\PageLinkHiper.baml" />
+    <Content Include="obj\Debug\Pages\PageLink\PageLinkIoi.baml" />
+    <Content Include="obj\Debug\Pages\PageLink\PageLinkLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageOther\PageOtherAbout.baml" />
+    <Content Include="obj\Debug\Pages\PageOther\PageOtherHelp.baml" />
+    <Content Include="obj\Debug\Pages\PageOther\PageOtherHelpDetail.baml" />
+    <Content Include="obj\Debug\Pages\PageOther\PageOtherLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageOther\PageOtherTest.baml" />
+    <Content Include="obj\Debug\Pages\PageSelectLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageSelectRight.baml" />
+    <Content Include="obj\Debug\Pages\PageSetup\PageSetupLaunch.baml" />
+    <Content Include="obj\Debug\Pages\PageSetup\PageSetupLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageSetup\PageSetupLink.baml" />
+    <Content Include="obj\Debug\Pages\PageSetup\PageSetupSystem.baml" />
+    <Content Include="obj\Debug\Pages\PageSetup\PageSetupUI.baml" />
+    <Content Include="obj\Debug\Pages\PageSpeedLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageSpeedRight.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionExport.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionMod.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionModDisabled.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionOverall.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionSetup.baml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Blocks\NeoForge.png" />

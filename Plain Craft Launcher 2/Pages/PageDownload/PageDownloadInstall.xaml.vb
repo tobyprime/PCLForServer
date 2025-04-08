@@ -1,4 +1,6 @@
-﻿Public Class PageDownloadInstall
+﻿Imports System.ComponentModel
+
+Public Class PageDownloadInstall
 
     Private Sub LoaderInit() Handles Me.Initialized
         DisabledPageAnimControls.Add(BtnStart)
@@ -616,6 +618,28 @@
             Next
             '清空当前
             PanMinecraft.Children.Clear()
+            ' 搜索服务器推荐整合包
+            Dim fullRootPath As String = IO.Path.GetFullPath("PCL/Packs")
+            If IO.Directory.Exists(fullRootPath) Then
+                ' 获取所有文件
+                Dim packFiles As String() = Directory.GetFiles(fullRootPath, "*.*", SearchOption.AllDirectories)
+                ' 添加服务器推荐整合包 card
+                Dim RecommendCard As New MyCard With {.Title = "服务器推荐整合包", .Margin = New Thickness(0, 15, 0, 15), .SwapType = 2}
+                Dim RecommendPanel As New StackPanel With {.Margin = New Thickness(20, MyCard.SwapedHeight, 18, 20), .VerticalAlignment = VerticalAlignment.Top, .RenderTransform = New TranslateTransform(0, 0)}
+                For Each File In packFiles
+                    Dim FileName = IO.Path.GetFileNameWithoutExtension(File)
+                    Dim Splited = FileName.Split(New String() {",,,"}, StringSplitOptions.None)                
+                    Dim Title = Splited(0)
+                    Dim Desc As  String = ""
+                    If Splited.Length > 1 Then
+                        Desc = Splited(1)
+                    End If
+                    Dim PackCard As New MyListItem With{.Logo = "pack://application:,,,/images/Blocks/GoldBlock.png",.Title=Splited(0), .Info=Desc, .Margin=New Thickness(0, 5, 0, 5) ,.EventType="安装整合包", .Type = MyListItem.CheckType.Clickable, .EventData=File}
+                    RecommendPanel.Children.Add(PackCard)
+                Next
+                RecommendCard.Children.Add(RecommendPanel)
+                PanMinecraft.Children.Add( RecommendCard)
+            End If
             '添加最新版本
             Dim CardInfo As New MyCard With {.Title = "最新版本", .Margin = New Thickness(0, 15, 0, 15), .SwapType = 2}
             Dim TopestVersions As New List(Of JObject)
@@ -630,7 +654,7 @@
             Dim PanInfo As New StackPanel With {.Margin = New Thickness(20, MyCard.SwapedHeight, 18, 0), .VerticalAlignment = VerticalAlignment.Top, .RenderTransform = New TranslateTransform(0, 0), .Tag = TopestVersions}
             MyCard.StackInstall(PanInfo, 7)
             CardInfo.Children.Add(PanInfo)
-            PanMinecraft.Children.Insert(0, CardInfo)
+            PanMinecraft.Children.Add(CardInfo)
             '添加其他版本
             For Each Pair As KeyValuePair(Of String, List(Of JObject)) In Dict
                 If Not Pair.Value.Any() Then Continue For

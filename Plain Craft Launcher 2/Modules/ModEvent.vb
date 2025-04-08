@@ -94,7 +94,12 @@
                     FrmMain.PageChange(Val(Data(0)), Val(Data(1)))
 
                 Case "导入整合包", "安装整合包"
-                    RunInUi(Sub() ModpackInstall())
+                    If Data.Length > 0
+                        RunInUi(Sub() ModpackInstall(Data(0)))
+                    Else
+                        RunInUi(Sub() ModpackInstall())
+                    End If
+                    
 
                 Case "下载文件"
                     Data(0) = Data(0).Replace("\", "/")
