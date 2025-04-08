@@ -1,5 +1,7 @@
 ﻿Imports System.Reflection
 Imports System.Windows.Threading
+Imports Microsoft.Web.WebView2.Core
+Imports Microsoft.Web.WebView2.WinForms
 
 Public Class Application
 
@@ -62,6 +64,11 @@ Public Class Application
             '初始化文件结构
             Directory.CreateDirectory(Path & "PCL\Pictures")
             Directory.CreateDirectory(Path & "PCL\Musics")
+            Directory.CreateDirectory(Path & "PCL\Runtimes")
+            CoreWebView2Environment.SetLoaderDllFolderPath("PCL\Runtimes")
+            
+            Environment.SetEnvironmentVariable("WEBVIEW2_USER_DATA_FOLDER", "PCL\WebView")
+            
             Try
                 Directory.CreateDirectory(PathTemp)
                 If Not CheckPermission(PathTemp) Then Throw New Exception("PCL 没有对 " & PathTemp & " 的访问权限")

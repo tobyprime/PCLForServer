@@ -70,7 +70,46 @@
         End Set
     End Property
     Private _LoadingSource As String = "pack://application:,,,/images/Icons/NoIcon.png"
+    Public Shared ReadOnly EventTypeProperty As DependencyProperty = DependencyProperty.Register("EventType", GetType(String), GetType(MyImage), New PropertyMetadata(Nothing))
+    Private IsMouseDown As Boolean = False
+    Private Sub Button_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles Me.MouseLeftButtonDown
+        IsMouseDown = True
+        ModEvent.TryStartEvent(EventType, EventData)
+        Focus()
+    End Sub
+    Private Sub Button_MouseUp() Handles Me.MouseLeftButtonUp
+        If IsMouseDown Then
+            IsMouseDown = False
+        End If
+    End Sub
+    Private Sub Button_MouseLeave() Handles Me.MouseLeave
+        IsMouseDown = False
+    End Sub
+    Private Sub Button_MouseUp(sender As Object, e As MouseButtonEventArgs) Handles Me.MouseLeftButtonUp
+        If Not IsMouseDown Then Return
+        Log("[Control] 按下图标按钮" & If(String.IsNullOrEmpty(Name), "", "：" & Name))
+        e.Handled = True
+        Button_MouseUp()
+        ModEvent.TryStartEvent(EventType, EventData)
+    End Sub
+    Public Property EventType As String
+        Get
+            Return GetValue(EventTypeProperty)
+        End Get
+        Set(value As String)
+            SetValue(EventTypeProperty, value)
+        End Set
+    End Property
+    Public Shared ReadOnly EventDataProperty As DependencyProperty = DependencyProperty.Register("EventData", GetType(String), GetType(MyImage), New PropertyMetadata(Nothing))
 
+    Public Property EventData As String
+        Get
+            Return GetValue(EventDataProperty)
+        End Get
+        Set(value As String)
+            SetValue(EventDataProperty, value)
+        End Set
+    End Property
 #End Region
 
     ''' <summary>

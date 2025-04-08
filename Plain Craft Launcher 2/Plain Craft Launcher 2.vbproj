@@ -1,6 +1,9 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Costura.Fody.6.0.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.6.0.0\build\Costura.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
+    <PublishSingleFile>true</PublishSingleFile>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4499F2D2-18EF-4238-B1F0-7BD547AFF925}</ProjectGuid>
@@ -30,9 +33,12 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <PublishTrimmed>true</PublishTrimmed>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>false</DefineDebug>
@@ -48,7 +54,7 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
     <DefineDebug>false</DefineDebug>
@@ -116,7 +122,7 @@
     <Optimize>true</Optimize>
     <WarningLevel>1</WarningLevel>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>BETA</DefineConstants>
     <Prefer32Bit>false</Prefer32Bit>
@@ -135,16 +141,29 @@
     <Optimize>true</Optimize>
     <WarningLevel>1</WarningLevel>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Costura, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Costura.Fody.6.0.0\lib\netstandard2.0\Costura.dll</HintPath>
+    </Reference>
     <Reference Include="Imazen.WebP, Version=10.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Imazen.WebP.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.3179.45, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.3179.45\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.3179.45, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.3179.45\lib\net462\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.3179.45, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.3179.45\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
     <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
@@ -165,6 +184,9 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -547,6 +569,7 @@
       <SubType>Designer</SubType>
     </Page>
     <None Include="app.manifest" />
+    <None Include="packages.config" />
     <None Include="Resources\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -929,7 +952,62 @@
     <Resource Include="Images\Heads\MCBBS.png" />
   </ItemGroup>
   <ItemGroup>
-
+    <Content Include="obj\Debug\Application.baml" />
+    <Content Include="obj\Debug\Controls\MyExtraTextButton.baml" />
+    <Content Include="obj\Debug\Controls\MyHint.baml" />
+    <Content Include="obj\Debug\Controls\MyMsg\MyMsgInput.baml" />
+    <Content Include="obj\Debug\Controls\MyMsg\MyMsgSelect.baml" />
+    <Content Include="obj\Debug\Controls\MyMsg\MyMsgText.baml" />
+    <Content Include="obj\Debug\Controls\MySearchBox.baml" />
+    <Content Include="obj\Debug\FormMain.baml" />
+    <Content Include="obj\Debug\Modules\Minecraft\MyCompItem.baml" />
+    <Content Include="obj\Debug\Modules\Minecraft\MyLocalModItem.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadClient.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadCompDetail.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadFabric.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadForge.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadInstall.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadLiteLoader.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadMod.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadNeoForge.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadOptiFine.baml" />
+    <Content Include="obj\Debug\Pages\PageDownload\PageDownloadPack.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\MyMsgLogin.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\MySkin.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLaunchLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLaunchRight.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginAuth.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginAuthSkin.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginLegacy.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginMs.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginMsSkin.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginNide.baml" />
+    <Content Include="obj\Debug\Pages\PageLaunch\PageLoginNideSkin.baml" />
+    <Content Include="obj\Debug\Pages\PageLink\PageLinkFeedback.baml" />
+    <Content Include="obj\Debug\Pages\PageLink\PageLinkHiper.baml" />
+    <Content Include="obj\Debug\Pages\PageLink\PageLinkIoi.baml" />
+    <Content Include="obj\Debug\Pages\PageLink\PageLinkLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageOther\PageOtherAbout.baml" />
+    <Content Include="obj\Debug\Pages\PageOther\PageOtherHelp.baml" />
+    <Content Include="obj\Debug\Pages\PageOther\PageOtherHelpDetail.baml" />
+    <Content Include="obj\Debug\Pages\PageOther\PageOtherLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageOther\PageOtherTest.baml" />
+    <Content Include="obj\Debug\Pages\PageSelectLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageSelectRight.baml" />
+    <Content Include="obj\Debug\Pages\PageSetup\PageSetupLaunch.baml" />
+    <Content Include="obj\Debug\Pages\PageSetup\PageSetupLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageSetup\PageSetupLink.baml" />
+    <Content Include="obj\Debug\Pages\PageSetup\PageSetupSystem.baml" />
+    <Content Include="obj\Debug\Pages\PageSetup\PageSetupUI.baml" />
+    <Content Include="obj\Debug\Pages\PageSpeedLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageSpeedRight.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionExport.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionLeft.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionMod.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionModDisabled.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionOverall.baml" />
+    <Content Include="obj\Debug\Pages\PageVersion\PageVersionSetup.baml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Blocks\NeoForge.png" />
@@ -942,4 +1020,16 @@
     <None Include="Resources\libwebp64.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.3179.45\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.3179.45\build\Microsoft.Web.WebView2.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.3179.45\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.3179.45\build\Microsoft.Web.WebView2.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.6.8.2\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.8.2\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.6.0.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.6.0.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets'))" />
+  </Target>
+  <Import Project="..\packages\Fody.6.8.2\build\Fody.targets" Condition="Exists('..\packages\Fody.6.8.2\build\Fody.targets')" />
+  <Import Project="..\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.6.0.0\build\Costura.Fody.targets')" />
 </Project>
